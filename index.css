@@ -1,0 +1,44 @@
+const questions = [
+  {
+    q: "ऐसी कौन सी चीज़ है जो टूटने के बाद भी काम करती है?",
+    a: "अंडा"
+  },
+  {
+    q: "कौन सा फल कभी नहीं पकता?",
+    a: "नारियल"
+  },
+  {
+    q: "ऐसी कौन सी चीज़ है जो हम पहन भी सकते हैं और पढ़ भी सकते हैं?",
+    a: "चश्मा"
+  }
+];
+
+let current = 0;
+
+function showQuestion() {
+  document.getElementById("question").textContent = questions[current].q;
+  document.getElementById("answer").value = '';
+  document.getElementById("result").textContent = '';
+}
+
+function checkAnswer() {
+  const userAns = document.getElementById("answer").value.trim();
+  if (userAns === "") {
+    document.getElementById("result").textContent = "उत्तर लिखें!";
+    return;
+  }
+
+  if (userAns.toLowerCase() === questions[current].a.toLowerCase()) {
+    document.getElementById("result").textContent = "सही उत्तर!";
+  } else {
+    document.getElementById("result").textContent = "गलत उत्तर! सही है: " + questions[current].a;
+  }
+}
+
+function nextQuestion() {
+  current = (current + 1) % questions.length;
+  showQuestion();
+}
+
+window.onload = showQuestion;
+
